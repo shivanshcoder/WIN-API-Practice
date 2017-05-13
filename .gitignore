@@ -27,3 +27,6 @@
 *.exe
 *.out
 *.app
+*.opendb
+/WIN API Practice/.vs/WIN API Practice/v15/Browse.VC.db
+/WIN API Practice/.vs/WIN API Practice/v15/Browse.VC.opendb
