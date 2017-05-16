@@ -6,11 +6,11 @@ int CDECL MessageBoxPrintf(TCHAR* szCaption, TCHAR* szFormat, int x, int y) {
 	TCHAR szBuffer[1024];
 	va_list pArglist;
 
-	//	va_start(pArglist, szFormat);
+	va_start(pArglist, szFormat);
 
-	_vsntprintf(szBuffer, sizeof(szBuffer) / sizeof(TCHAR), szFormat, pArglist);
+	_vsntprintf_s(szBuffer, sizeof(szBuffer) / sizeof(TCHAR), szFormat, pArglist);
 
-	//va_end(pArglist);
+	va_end(pArglist);
 
 	return MessageBox(NULL, szBuffer, szCaption, 0);
 }
