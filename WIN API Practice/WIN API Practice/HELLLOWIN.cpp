@@ -1,5 +1,7 @@
 #include<Windows.h>
 
+#define sd
+
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE PrevInstance, PSTR szCmdLine, int iCmdShow) {
 	static TCHAR szAppName[] = TEXT("HELLO WINDOWS");
@@ -13,8 +15,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE PrevInstance, PSTR szCmdLine, 
 	wndclass.cbWndExtra = 0;
 	wndclass.hInstance = hInstance;
 	wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	wndclass.hCursor = LoadCursor(NULL, IDC_HAND);
+	wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	wndclass.lpszMenuName = NULL;
 	wndclass.lpszClassName = szAppName;
 
@@ -35,10 +37,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE PrevInstance, PSTR szCmdLine, 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	HDC hdc;
 	PAINTSTRUCT ps;
+
+	static TCHAR szAppName[] = TEXT("HELLO");
 	RECT rect;
 	switch (message) {
 	case WM_CREATE:
-	//	PlaySound(TEXT("hellowin.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("hellowin.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		return 0;
 	case WM_PAINT:
 		hdc = BeginPaint(hwnd, &ps);
@@ -47,8 +51,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		EndPaint(hwnd, &ps);
 		return 0;
 	case WM_DESTROY:
+		PlaySound(TEXT("hellowin.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		PostQuitMessage(0);
 		return 0;
+	case WM_KEYDOWN:
+		PlaySound(TEXT("hellowin.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		return 0;
+
 	}
 	return DefWindowProc(hwnd, message, wParam, lParam);
 }
