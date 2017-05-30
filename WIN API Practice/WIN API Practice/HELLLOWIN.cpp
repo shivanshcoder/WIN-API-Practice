@@ -34,29 +34,38 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE PrevInstance, PSTR szCmdLine, 
 	return msg.wParam;
 }
 
+void show()///bmhb
+{}
+
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	HDC hdc;
 	PAINTSTRUCT ps;
-
+	show();
 	static TCHAR szAppName[] = TEXT("HELLO");
 	RECT rect;
 	switch (message) {
 	case WM_CREATE:
-		PlaySound(TEXT("hellowin.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("S.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		return 0;
 	case WM_PAINT:
+		MessageBox(NULL, TEXT("This Program Requires WINDOWS NT"), szAppName, MB_ICONERROR);
 		hdc = BeginPaint(hwnd, &ps);
 		GetClientRect(hwnd, &rect);
 		DrawText(hdc, TEXT("Hello Windows 10"), -1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
 		EndPaint(hwnd, &ps);
 		return 0;
 	case WM_DESTROY:
-		PlaySound(TEXT("hellowin.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		PostQuitMessage(0);
 		return 0;
 	case WM_KEYDOWN:
+		InvalidateRect(hwnd, &rect, true);
+		hdc = GetDC(hwnd);
+		GetClientRect(hwnd, &rect);
+		DrawText(hdc, TEXT("Hello Windowasdasjd,ajsnd,ajsbdj,absd,asjd,bkaushdausds"), -1, &rect,DT_RIGHT );
+		ReleaseDC(hwnd, hdc);
 		PlaySound(TEXT("hellowin.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		return 0;
+	
 
 	}
 	return DefWindowProc(hwnd, message, wParam, lParam);
