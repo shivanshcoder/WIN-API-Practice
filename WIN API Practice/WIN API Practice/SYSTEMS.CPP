@@ -15,7 +15,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	static TCHAR szAppName[] = TEXT("SysMets1");
 	HWND         hwnd;
 	MSG          msg;
-	WNDCLASS     wndclass;
+	WNDCLASS     wndclass,wndclass1;
 
 	wndclass.style = CS_HREDRAW | CS_VREDRAW;
 	wndclass.lpfnWndProc = WndProc;
@@ -23,14 +23,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	wndclass.cbWndExtra = 0;
 	wndclass.hInstance = hInstance;
 	wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wndclass.hCursor = LoadCursor(NULL, IDC_CROSS);
 	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	wndclass.lpszMenuName = NULL;
 	wndclass.lpszClassName = szAppName;
 
 	if (!RegisterClass(&wndclass))
 	{
-		MessageBox(NULL, TEXT("This program requires Windows NT!"),
+		MessageBox(NULL, TEXT("This program requires Windows 1!"),
 			szAppName, MB_ICONERROR);
 		return 0;
 	}
@@ -61,6 +61,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	TCHAR       szBuffer[10];
 	TEXTMETRIC  tm;
 
+	int space = 0;
+	int height = 0;
 	switch (message)
 	{
 	case WM_CREATE:
@@ -76,24 +78,29 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	case WM_PAINT:
 		hdc = BeginPaint(hwnd, &ps);
-
-		for (i = 0; i < NUMLINES; i++)
+		for (i = 0; i < NUMLINES; i++,height++)
 		{
-			TextOut(hdc, 0, cyChar * i,
+			
+			TextOut(hdc, space, cyChar * height,
 				sysmetrics[i].szLabel,
 				lstrlen(sysmetrics[i].szLabel));
 
-			TextOut(hdc, 22 * cxCaps, cyChar * i,
+			TextOut(hdc, space + 22 * cxCaps, cyChar * height,
 				sysmetrics[i].szDesc,
 				lstrlen(sysmetrics[i].szDesc));
 
 			SetTextAlign(hdc, TA_RIGHT | TA_TOP);
 
-			TextOut(hdc, 22 * cxCaps + 40 * cxChar, cyChar * i, szBuffer,
+			TextOut(hdc, space + 22 * cxCaps + 40 * cxChar, cyChar * height, szBuffer,
 				wsprintf(szBuffer, TEXT("%5d"),
 					GetSystemMetrics(sysmetrics[i].iIndex)));
 
 			SetTextAlign(hdc, TA_LEFT | TA_TOP);
+			if(i!=0)
+				if (i % 40 == 0) {
+					height = 0;
+					space = space + 22 * cxCaps + 40 * cxChar + 5;
+				}
 		}
 		EndPaint(hwnd, &ps);
 		return 0;
