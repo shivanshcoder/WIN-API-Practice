@@ -1,7 +1,7 @@
 /*-----------------------------------------------
 SYSMETS.H -- System metrics display structure
 -----------------------------------------------*/
-//#include<Windows.h>
+#include<Windows.h>
 #include<tchar.h>
 #define NUMLINES ((int) (sizeof sysmetrics / sizeof sysmetrics [0]))
 

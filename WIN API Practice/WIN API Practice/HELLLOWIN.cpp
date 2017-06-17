@@ -1,7 +1,6 @@
 #include<Windows.h>
 
 #define sd
-
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE PrevInstance, PSTR szCmdLine, int iCmdShow) {
 	static TCHAR szAppName[] = TEXT("HELLO WINDOWS");
@@ -34,13 +33,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE PrevInstance, PSTR szCmdLine, 
 	return msg.wParam;
 }
 
-void show()///bmhb
-{}
+
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	HDC hdc;
 	PAINTSTRUCT ps;
-	show();
 	static TCHAR szAppName[] = TEXT("HELLO");
 	RECT rect;
 	switch (message) {
