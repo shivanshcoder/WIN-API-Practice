@@ -15,7 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AltWind.c">
+    <ClInclude Include="ANGLES.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mYcONSTRUCTS.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Viewports and Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
