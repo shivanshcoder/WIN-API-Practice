@@ -34,10 +34,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE PrevhInstance, PSTR szCmdLine,
 
 }
 void Paint(HDC hdc) {
-	POINT p = { 70,-80 };
-	SetMapMode(hdc, MM_LOENGLISH);
-	SetWindowOrgEx(hdc,DPtoLP(hdc,cxClient/2,cyClient/2), NULL);
-	SetViewportOrgEx(hdc, cxClient/2,cyClient/2, NULL);
+	POINT p = { 700,800 };
+	SetMapMode(hdc, MM_ISOTROPIC);
+	SetWindowExtEx(hdc, 2, 2, NULL);
+	SetViewportExtEx(hdc, 1, 1, NULL);
 	TextOut(hdc, POINTtoXY(p) , TEXT("VOILA"), 6);
 }
 

@@ -23,7 +23,7 @@
     <ClInclude Include="mYcONSTRUCTS.H" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Viewports and Window.cpp" />
+    <ClCompile Include="RandRect.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -23,7 +23,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Viewports and Window.cpp">
+    <ClCompile Include="RandRect.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
