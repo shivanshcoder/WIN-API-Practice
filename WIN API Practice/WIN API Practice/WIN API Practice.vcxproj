@@ -20,10 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ANGLES.h" />
+    <ClInclude Include="C++_WINAPI_headers.h" />
+    <ClInclude Include="Header.h" />
     <ClInclude Include="mYcONSTRUCTS.H" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RandRect.c" />
+    <ClCompile Include="KeyView.c" />
+    <ClCompile Include="keyView.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

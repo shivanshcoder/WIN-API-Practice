@@ -21,9 +21,18 @@
     <ClInclude Include="mYcONSTRUCTS.H">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C++_WINAPI_headers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RandRect.c">
+    <ClCompile Include="KeyView.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="keyView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

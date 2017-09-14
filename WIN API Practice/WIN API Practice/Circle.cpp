@@ -77,62 +77,63 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 	case WM_SIZE:
 		cxClient = LOWORD(lParam);
 		cyClient = HIWORD(lParam);
-		return 0;
-	case WM_MOUSEMOVE:
-	//case WM_MOUSEFIRST:
-		if (MK_LBUTTON ||MK_RBUTTON)
-		{
-					hdc = GetDC(hwnd);
-			//	//	HPEN hpen1 = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-			//	//	HPEN hpen2 = CreatePen(PS_DASHDOT, 3, RGB(255, 255, 255));
-			//		//SelectObject(hdc, GetStockObject(WHITE_PEN));
-			//		//DrawBezier(hdc, apt);
-
-			//		//MoveToEx(hdc, temp1.x, temp1.y, NULL);
-			//		//LineTo(hdc, temp2.x, temp2.y);
-
-			if (MK_LBUTTON)
-			{
-				//	SelectObject(hdc, hpen1);
-				SetWindowOrgEx(hdc, -cxClient / 4, -cyClient / 4, NULL);
-
-			}
-
-			if (MK_RBUTTON)
-			{
-				//	SelectObject(hdc, hpen1);
-				SetViewportOrgEx(hdc, cxClient / 4, cyClient / 4, NULL);
-			}
-
-			InvalidateRect(hwnd, NULL, FALSE);
-			ReleaseDC(hwnd, hdc);
-		}
-	//		////DrawBezier(hdc, apt);
-	//		//MoveToEx(hdc, temp1.x, temp1.y, NULL);
-	//		//LineTo(hdc, temp2.x, temp2.y);
-	//		//ReleaseDC(hwnd, hdc);
-	//	}
 	//	return 0;
-	//case WM_MOUSELEAVE:
-	//	temp2.x = LOWORD(lParam);
-	//	temp2.y = HIWORD(lParam);
-	//	hdc = GetDC(hwnd);
-	//	SelectObject(hdc, hpen);
-	//	MoveToEx(hdc, temp1.x, temp1.y,NULL);
-	//	LineTo(hdc,temp2.x, temp2.y);
-	//	ReleaseDC(hwnd, hdc);
+	//case WM_MOUSEMOVE:
+	////case WM_MOUSEFIRST:
+	//	if (MK_LBUTTON ||MK_RBUTTON)
+	//	{
+	//				hdc = GetDC(hwnd);
+	//		//	//	HPEN hpen1 = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	//		//	//	HPEN hpen2 = CreatePen(PS_DASHDOT, 3, RGB(255, 255, 255));
+	//		//		//SelectObject(hdc, GetStockObject(WHITE_PEN));
+	//		//		//DrawBezier(hdc, apt);
+
+	//		//		//MoveToEx(hdc, temp1.x, temp1.y, NULL);
+	//		//		//LineTo(hdc, temp2.x, temp2.y);
+
+	//		if (MK_LBUTTON)
+	//		{
+	//			//	SelectObject(hdc, hpen1);
+	//			SetWindowOrgEx(hdc, -cxClient / 4, -cyClient / 4, NULL);
+
+	//		}
+
+	//		if (MK_RBUTTON)
+	//		{
+	//			//	SelectObject(hdc, hpen1);
+	//			SetViewportOrgEx(hdc, cxClient / 4, cyClient / 4, NULL);
+	//		}
+
+	//		InvalidateRect(hwnd, NULL, FALSE);
+	//		ReleaseDC(hwnd, hdc);
+	//	}
+	////		////DrawBezier(hdc, apt);
+	////		//MoveToEx(hdc, temp1.x, temp1.y, NULL);
+	////		//LineTo(hdc, temp2.x, temp2.y);
+	////		//ReleaseDC(hwnd, hdc);
+	////	}
+	////	return 0;
+	////case WM_MOUSELEAVE:
+	////	temp2.x = LOWORD(lParam);
+	////	temp2.y = HIWORD(lParam);
+	////	hdc = GetDC(hwnd);
+	////	SelectObject(hdc, hpen);
+	////	MoveToEx(hdc, temp1.x, temp1.y,NULL);
+	////	LineTo(hdc,temp2.x, temp2.y);
+	////	ReleaseDC(hwnd, hdc);
 	case WM_PAINT:
 		POINT p1, p2;
 		hdc = BeginPaint(hwnd, &ps);/*
 		SetViewportOrgEx(hdc, cxClient / 2, cyClient / 2, NULL);
 		SetWindowOrgEx(hdc, -cxClient / 4, -cyClient / 4, NULL);
 */
-		GetViewportOrgEx(hdc, &p1);
-		GetWindowOrgEx(hdc, &p2);
+	//	GetViewportOrgEx(hdc, &p1);
+	//	GetWindowOrgEx(hdc, &p2);
 		TextOut(hdc, cxClient / 4, cyClient / 4, TEXT("HOLA"),5);
 		SelectObject(hdc, hpen);
-		MoveToEx(hdc, p1.x, p1.y, NULL);
-		LineTo(hdc, p2.x,p2.y);
+		//MoveToEx(hdc, p1.x, p1.y, NULL);
+		//LineTo(hdc, p2.x,p2.y);
+		circle(hdc, { cxClient,cyClient }, 5);
 		EndPaint(hwnd, &ps);
 		return 0;
 
@@ -169,3 +170,5 @@ void anglequarter(POINT* apt,int radius, int anglecos) {
 	anglequarter(apt, radius, 0);
 	Polyline(hdc, apt, angles);
 }
+
+

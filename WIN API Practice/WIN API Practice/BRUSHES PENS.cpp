@@ -31,7 +31,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine,
 		return 0;
 	}
 	hwnd = CreateWindow(szAppName, TEXT("Practice"),
-		WS_OVERLAPPEDWINDOW,
+		WS_OVERLAPPEDWINDOW|WS_VSCROLL,
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		NULL, NULL, hInstance, NULL);
@@ -52,7 +52,7 @@ void upc(POINT& val, int x, int y) {
 }
 void maze(HDC &hdc, int def,int cxcli) {
 	def = 35*def  ;
-	int size = (def - 2) / 2 * 4+1;
+	int size = (def - 2) / 2 * 4 + 1;
 	POINT *apt = new POINT[size];
 	int x = 10;
 	int y = 10;
@@ -89,6 +89,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		cyClient = HIWORD(lParam);
 		return 0;
 
+	case WM_VSCROLL:
+
+		hdc = GetDC(hwnd);
+		SetWindowOrgEx(hdc, 10, 10, NULL);
+		ReleaseDC(hwnd, hdc);
+		UpdateWindow(hwnd);
+		return 0;
 	case WM_PAINT:
 		hdc = BeginPaint(hwnd, &ps);
 
@@ -101,7 +108,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		//	/*apt[i].x = aptf[i].x;
 		//	apt[i].y = aptf[i].y;*/
 		//}
-
+	//	SetWindowOrgEx(hdc, cxClient / 2, cyClient / 2, NULL);
 		SetPolyFillMode(hdc, ALTERNATE);
 		//Polygon(hdc, apt, psize);
 		/*
@@ -113,6 +120,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		SetPolyFillMode(hdc, WINDING);
 		Polygon(hdc, apt, 4);
 */
+
 		maze(hdc, 20,cxClient);
 		EndPaint(hwnd, &ps);
 		return 0;
